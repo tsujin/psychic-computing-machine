@@ -5,6 +5,11 @@ DIRS = {
     'W': (-1, 0)
 }
 
+test_map = [
+    ['G', 'G'],
+    ['W', 'M']
+]
+
 def neighboring_directions(coordinate: tuple[int, int], map_width: int, map_height: int) -> list[str]:
     """
     Helper function which finds all valid directions a given tile can have neighbors in.
@@ -56,6 +61,6 @@ def parse_tile_map(tile_map: list[list[str]]) -> tuple[set, dict]:
 
             for dir in neighboring_directions((i_x, i_y), map_width, map_height):
                 dir_x, dir_y = DIRS[dir]
-                possible_neighbors.add((tile, tile_map[i_x + dir_x][i_y + dir_y], dir))
+                possible_neighbors.add((tile, tile_map[i_y + dir_y][i_x + dir_x], dir))
     
     return possible_neighbors, weights_map
